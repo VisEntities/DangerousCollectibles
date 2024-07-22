@@ -13,7 +13,7 @@ using UnityEngine;
 namespace Oxide.Plugins
 {
     [Info("Dangerous Collectibles", "VisEntities", "1.0.0")]
-    [Description(" ")]
+    [Description("Adds a chance for collectibles like stumps to explode when picked up.")]
     public class DangerousCollectibles : RustPlugin
     {
         #region Fields
