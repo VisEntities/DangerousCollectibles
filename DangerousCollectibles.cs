@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Dangerous Collectibles", "VisEntities", "1.0.0")]
+    [Info("Dangerous Collectibles", "VisEntities", "1.0.1")]
     [Description("Adds a chance for collectibles like stumps to explode when picked up.")]
     public class DangerousCollectibles : RustPlugin
     {
@@ -209,7 +209,7 @@ namespace Oxide.Plugins
             Effect.server.Run(FX_BRADLEY_EXPLOSION, position, Vector3.up, null, true);
             Effect.server.Run(FX_MLRS_ROCKET_EXPLOSION_GROUND, position, Vector3.up, null, true);
 
-            List<BasePlayer> nearbyPlayers = Pool.GetList<BasePlayer>();
+            List<BasePlayer> nearbyPlayers = Pool.Get<List<BasePlayer>>();
             Vis.Entities(position, explosionConfig.ImpactRadius, nearbyPlayers, LAYER_EXPLOSION, QueryTriggerInteraction.Ignore);
 
             foreach (BasePlayer player in nearbyPlayers)
@@ -222,7 +222,7 @@ namespace Oxide.Plugins
                 player.Hurt(hitInfo);       
             }
 
-            Pool.FreeList(ref nearbyPlayers);
+            Pool.FreeUnmanaged(ref nearbyPlayers);
         }
 
         #endregion Explosion
